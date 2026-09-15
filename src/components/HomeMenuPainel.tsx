@@ -8,12 +8,13 @@ import {
   Play,
   Settings2,
 } from "lucide-react";
-import bgHome from "@/assets/bg-home.jpg";
 import bibleMenuImage from "@/assets/menu-biblia.jpg";
 import hymnalMenuImage from "@/assets/menu-harpa.jpg";
 import presentationMenuImage from "@/assets/menu-apresentacao.jpg";
 import settingsMenuImage from "@/assets/menu-configuracoes.jpg";
 import { UnifiedSearch } from "@/components/UnifiedSearch";
+import { getMenuBackground } from "@/lib/menu-background";
+import { usePresentation } from "@/lib/presentation";
 import { inspirationalVerses } from "@/lib/verses";
 
 const secondaryCards = [
@@ -52,6 +53,7 @@ function greetingFor(date: Date | null) {
 }
 
 export function HomeMenuPainel() {
+  const { settings } = usePresentation();
   const [verseIndex, setVerseIndex] = useState(0);
   const [now, setNow] = useState<Date | null>(null);
 
@@ -78,7 +80,7 @@ export function HomeMenuPainel() {
     <main className="relative min-h-screen w-full overflow-hidden bg-background">
       <div
         className="photo-lift absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${bgHome})` }}
+        style={{ backgroundImage: `url(${getMenuBackground(settings.menuBackground)})` }}
         aria-hidden
       />
       <div className="stage-veil absolute inset-0" aria-hidden />

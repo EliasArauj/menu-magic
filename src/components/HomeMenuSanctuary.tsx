@@ -8,13 +8,14 @@ import {
   Play,
   Settings2,
 } from "lucide-react";
-import bgHome from "@/assets/bg-home.jpg";
 import bibleMenuImage from "@/assets/menu-biblia.jpg";
 import hymnalMenuImage from "@/assets/menu-harpa.jpg";
 import presentationMenuImage from "@/assets/menu-apresentacao.jpg";
 import settingsMenuImage from "@/assets/menu-configuracoes.jpg";
 import { UnifiedSearch } from "@/components/UnifiedSearch";
 import { Button } from "@/components/ui/button";
+import { getMenuBackground } from "@/lib/menu-background";
+import { usePresentation } from "@/lib/presentation";
 import { inspirationalVerses } from "@/lib/verses";
 
 const destinations = [
@@ -55,6 +56,7 @@ const destinations = [
 
 
 export function HomeMenuSanctuary() {
+  const { settings } = usePresentation();
   const [verseIndex, setVerseIndex] = useState(0);
 
   useEffect(() => {
@@ -70,7 +72,7 @@ export function HomeMenuSanctuary() {
     <main className="sanctuary relative min-h-screen w-full overflow-hidden bg-background">
       <div
         className="sanctuary-backdrop absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${bgHome})` }}
+        style={{ backgroundImage: `url(${getMenuBackground(settings.menuBackground)})` }}
         aria-hidden
       />
       <div className="sanctuary-veil absolute inset-0" aria-hidden />

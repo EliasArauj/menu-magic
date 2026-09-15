@@ -6,6 +6,7 @@ import { SlideStage } from "@/components/SlideStage";
 import { appearanceLabels, appearances } from "@/lib/appearance";
 import { usePresentation } from "@/lib/presentation";
 import { clearCustomHymns, loadCustomHymns, parseHymnImport, saveCustomHymns } from "@/lib/harpa";
+import { menuBackgroundOptions } from "@/lib/menu-background";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/configuracoes")({
@@ -103,6 +104,47 @@ function ConfiguracoesPage() {
                 </button>
               ))}
             </div>
+          </Field>
+
+          <Field label="Imagem do menu principal">
+            <div className="grid grid-cols-2 gap-3">
+              {menuBackgroundOptions.map((option) => {
+                const selected = (settings.menuBackground ?? "original") === option.value;
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => updateSettings({ menuBackground: option.value })}
+                    className={cn(
+                      "group overflow-hidden rounded-xl border bg-card text-left transition-colors",
+                      selected
+                        ? "border-primary ring-2 ring-primary/30"
+                        : "border-border hover:border-primary/60",
+                    )}
+                  >
+                    <img
+                      src={option.image}
+                      alt={`Imagem ${option.label.toLowerCase()} do menu principal`}
+                      className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <span className="flex items-center justify-between px-3 py-2 text-xs font-medium">
+                      {option.label}
+                      <span
+                        className={cn(
+                          "size-2 rounded-full",
+                          selected ? "bg-primary" : "bg-muted",
+                        )}
+                        aria-hidden
+                      />
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Usada nos estilos Painel e Santuário.
+            </p>
           </Field>
 
           <Range

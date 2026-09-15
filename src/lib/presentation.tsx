@@ -9,6 +9,7 @@ import {
 } from "react";
 import type { ThemeKey } from "./imagery";
 import { appearances, type Appearance } from "./appearance";
+import type { MenuBackground } from "./menu-background";
 import { PresentationContext } from "./presentation-context";
 export { appearances, appearanceLabels, type Appearance } from "./appearance";
 
@@ -44,6 +45,8 @@ export interface Settings {
   photoBrightness: number;
   /** Estilo do menu principal. */
   menuStyle: "classico" | "animado" | "cinema" | "santuario" | "painel";
+  /** Imagem usada como fundo nos menus com foto principal. */
+  menuBackground: MenuBackground;
 }
 
 export const defaultSettings: Settings = {
@@ -61,6 +64,7 @@ export const defaultSettings: Settings = {
   containerOpacity: 58,
   photoBrightness: 125,
   menuStyle: "painel",
+  menuBackground: "original",
 };
 
 interface State {
