@@ -80,16 +80,16 @@ function ConfiguracoesPage() {
           </Field>
 
           <Field label="Estilo do menu principal">
-            <div className="inline-flex rounded-full border border-border p-1">
+            <div className="grid w-full grid-cols-2 gap-1 rounded-xl border border-border p-1 sm:grid-cols-3">
               {(["painel", "classico", "animado", "cinema", "santuario"] as const).map((m) => (
                 <button
                   key={m}
                   onClick={() => updateSettings({ menuStyle: m })}
                   className={cn(
-                    "rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.15em]",
+                    "min-w-0 rounded-lg px-2 py-2 text-center text-xs font-medium uppercase tracking-wide",
                     (settings.menuStyle ?? "painel") === m
                       ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground",
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {m === "painel"
