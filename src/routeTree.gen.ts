@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApresentacaoRouteImport } from './routes/apresentacao'
+import { Route as BibliaRouteImport } from './routes/biblia'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
+import { Route as HarpaRouteImport } from './routes/harpa'
+import { Route as ProjecaoRouteImport } from './routes/projecao'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApresentacaoRoute = ApresentacaoRouteImport.update({
+  id: '/apresentacao',
+  path: '/apresentacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BibliaRoute = BibliaRouteImport.update({
+  id: '/biblia',
+  path: '/biblia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HarpaRoute = HarpaRouteImport.update({
+  id: '/harpa',
+  path: '/harpa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjecaoRoute = ProjecaoRouteImport.update({
+  id: '/projecao',
+  path: '/projecao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/apresentacao': typeof ApresentacaoRoute
+  '/biblia': typeof BibliaRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/harpa': typeof HarpaRoute
+  '/projecao': typeof ProjecaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/apresentacao': typeof ApresentacaoRoute
+  '/biblia': typeof BibliaRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/harpa': typeof HarpaRoute
+  '/projecao': typeof ProjecaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/apresentacao': typeof ApresentacaoRoute
+  '/biblia': typeof BibliaRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/harpa': typeof HarpaRoute
+  '/projecao': typeof ProjecaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/apresentacao'
+    | '/biblia'
+    | '/configuracoes'
+    | '/harpa'
+    | '/projecao'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/apresentacao'
+    | '/biblia'
+    | '/configuracoes'
+    | '/harpa'
+    | '/projecao'
+  id:
+    | '__root__'
+    | '/'
+    | '/apresentacao'
+    | '/biblia'
+    | '/configuracoes'
+    | '/harpa'
+    | '/projecao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApresentacaoRoute: typeof ApresentacaoRoute
+  BibliaRoute: typeof BibliaRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
+  HarpaRoute: typeof HarpaRoute
+  ProjecaoRoute: typeof ProjecaoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apresentacao': {
+      id: '/apresentacao'
+      path: '/apresentacao'
+      fullPath: '/apresentacao'
+      preLoaderRoute: typeof ApresentacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/biblia': {
+      id: '/biblia'
+      path: '/biblia'
+      fullPath: '/biblia'
+      preLoaderRoute: typeof BibliaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/harpa': {
+      id: '/harpa'
+      path: '/harpa'
+      fullPath: '/harpa'
+      preLoaderRoute: typeof HarpaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projecao': {
+      id: '/projecao'
+      path: '/projecao'
+      fullPath: '/projecao'
+      preLoaderRoute: typeof ProjecaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApresentacaoRoute: ApresentacaoRoute,
+  BibliaRoute: BibliaRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
+  HarpaRoute: HarpaRoute,
+  ProjecaoRoute: ProjecaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
